@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miller's Miscellaneous Shop</title>
+    <link rel="stylesheet" href="styles.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("main").hide().fadeIn(1000);
+
+        $("form").submit(function(event) {
+            let isValid = true;
+            $("input[required]").each(function() {
+                if ($(this).val().trim() === "") {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert("All required fields must be filled out!");
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+</head>
+<body>
+    <header>
+        <h1>Miller's Miscellaneous Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="purchase.html">Purchase</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="picks">
+        <h2>This Week's Picks</h2>
+        <div class="items">
+            <div class="item">Item Name - $Price</div>
+            <div class="item">Item Name - $Price</div>
+        </div>
+    </section>
+    
+    <section id="search">
+        <h2>Search</h2>
+        <input type="text" placeholder="What can we help you find...">
+        <button>Search</button>
+    </section>
+    
+    <section id="cart">
+        <h2>Cart</h2>
+        <div class="cart-items">
+            <p>Item Name - $Price</p>
+            <p>Subtotal: $300.59</p>
+        </div>
+        <button>Checkout</button>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Miller's Miscellaneous Shop</p>
+    </footer>
+</body>
+</html>
