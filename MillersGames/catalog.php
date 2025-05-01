@@ -72,14 +72,20 @@ $result = $stmt->get_result();
     <div class="row justify-content-center">
         <?php while($row = $result->fetch_assoc()): ?>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-            <a href="product.php?id=<?= $row['product_id'] ?>" class="text-decoration-none text-dark">
-                <div class="card text-center p-3 h-100">
+            <div class="card text-center p-3 h-100 d-flex flex-column">
+                <a href="product.php?id=<?= $row['product_id'] ?>" class="text-decoration-none text-dark">
                     <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
                     <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
                     <p class="card-text">Compat: <?= htmlspecialchars($row['compatibility']) ?></p>
                     <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
+                </a>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="cart.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-success">Add to Cart</a>
+                        <a href="wishlist.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-outline-secondary">♡ Wishlist</a>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
         <?php endwhile; ?>
     </div>

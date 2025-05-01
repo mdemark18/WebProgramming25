@@ -2,11 +2,9 @@
 session_start();
 require_once 'db_connect.php';
 
-// Random featured and popular products
 $query = "SELECT product_id, name, price, category, image_path FROM products ORDER BY RAND() LIMIT 6";
 $result = mysqli_query($conn, $query);
 
-// Separate into featured (first 3) and popular (last 3)
 $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $featured = array_slice($products, 0, 3);
 $popular = array_slice($products, 3, 3);
@@ -53,21 +51,23 @@ $popular = array_slice($products, 3, 3);
         🎮 New arrivals just dropped — check the catalog for the latest!
     </div>
 
-    <div class="text-center mb-4">
-        <a href="wishlist.php" class="btn btn-outline-warning">💛 View My Wishlist</a>
-    </div>
+
 
     <h2 class="text-center mb-4">Featured Products</h2>
     <div class="row justify-content-center">
         <?php foreach ($featured as $row): ?>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card text-center p-3 h-100">
-                <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
-                <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
-                <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
-                <div class="d-flex justify-content-center gap-2 mt-1">
-                    <a href="cart.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-success">Add to Cart</a>
-                    <a href="wishlist.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-outline-secondary">♡ Wishlist</a>
+            <div class="card text-center p-3 h-100 d-flex flex-column">
+                <a href="product.php?id=<?= $row['product_id'] ?>" class="text-decoration-none text-dark">
+                    <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
+                    <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
+                    <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
+                </a>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="cart.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-success">Add to Cart</a>
+                        <a href="wishlist.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-outline-secondary">♡ Wishlist</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,9 +83,11 @@ $popular = array_slice($products, 3, 3);
 
     <?php if (isset($_SESSION['user_id'])): ?>
     <div class="text-center mb-5">
+        <a href="wishlist.php" class="btn btn-outline-secondary mx-2">Wishlist</a>
+        <a href="cart.php" class="btn btn-outline-secondary mx-2">View Cart</a>
         <a href="orders.php" class="btn btn-outline-secondary mx-2">Order History</a>
         <a href="profile.php" class="btn btn-outline-secondary mx-2">Change Password</a>
-        <a href="cart.php" class="btn btn-outline-secondary mx-2">View Cart</a>
+        
     </div>
     <?php endif; ?>
 
@@ -93,13 +95,17 @@ $popular = array_slice($products, 3, 3);
     <div class="row justify-content-center">
         <?php foreach ($popular as $row): ?>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card text-center p-3 h-100">
-                <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
-                <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
-                <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
-                <div class="d-flex justify-content-center gap-2 mt-1">
-                    <a href="cart.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-success">Add to Cart</a>
-                    <a href="wishlist.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-outline-secondary">♡ Wishlist</a>
+            <div class="card text-center p-3 h-100 d-flex flex-column">
+                <a href="product.php?id=<?= $row['product_id'] ?>" class="text-decoration-none text-dark">
+                    <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
+                    <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
+                    <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
+                </a>
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="cart.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-success">Add to Cart</a>
+                        <a href="wishlist.php?add=<?= $row['product_id'] ?>" class="btn btn-sm btn-outline-secondary">♡ Wishlist</a>
+                    </div>
                 </div>
             </div>
         </div>

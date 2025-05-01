@@ -80,13 +80,17 @@ $items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <div class="row justify-content-center">
             <?php foreach ($items as $item): ?>
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center p-3">
-                    <img src="<?= htmlspecialchars($item['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($item['name']) ?>">
-                    <h5 class="card-title"><?= htmlspecialchars($item['name']) ?></h5>
-                    <p class="fw-bold">$<?= number_format($item['price'], 2) ?></p>
-                    <div class="d-flex justify-content-center gap-2 mt-2">
-                        <a href="product.php?id=<?= $item['product_id'] ?>" class="btn btn-outline-primary btn-sm">View</a>
-                        <a href="wishlist.php?remove=<?= $item['product_id'] ?>" class="btn btn-outline-danger btn-sm">Remove</a>
+                <div class="card h-100 text-center p-3 d-flex flex-column">
+                    <a href="product.php?id=<?= $item['product_id'] ?>" class="text-decoration-none text-dark">
+                        <img src="<?= htmlspecialchars($item['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($item['name']) ?>">
+                        <h5 class="card-title"><?= htmlspecialchars($item['name']) ?></h5>
+                        <p class="fw-bold">$<?= number_format($item['price'], 2) ?></p>
+                    </a>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="product.php?id=<?= $item['product_id'] ?>" class="btn btn-outline-primary btn-sm">View</a>
+                            <a href="wishlist.php?remove=<?= $item['product_id'] ?>" class="btn btn-outline-danger btn-sm">Remove</a>
+                        </div>
                     </div>
                 </div>
             </div>
