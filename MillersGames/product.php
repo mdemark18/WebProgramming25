@@ -59,7 +59,6 @@ if (!$product) {
             <div class="card p-4 text-center">
                 <img src="<?= htmlspecialchars($product['image_path']) ?>" class="img-fluid mb-3" alt="<?= htmlspecialchars($product['name']) ?>">
                 <h2 class="card-title"><?= htmlspecialchars($product['name']) ?></h2>
-                <p><strong>Compatibility:</strong> <?= htmlspecialchars($product['compatibility']) ?></p>
                 <p><strong>Description:</strong> <?= htmlspecialchars($product['description'] ?? 'No description available.') ?></p>
                 <p><strong>Price:</strong> $<?= number_format($product['price'], 2) ?></p>
                 <a href="cart.php?add=<?= $product['product_id'] ?>" class="btn btn-success mt-3">Add to Cart</a>
@@ -97,4 +96,5 @@ if (!$product) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
