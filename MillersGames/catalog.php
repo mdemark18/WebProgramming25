@@ -4,7 +4,7 @@ require_once 'db_connect.php';
 
 $categoryFilter = $_GET['category'] ?? '';
 $filterSql = $categoryFilter ? "WHERE category = ?" : "";
-$stmt = $conn->prepare("SELECT product_id, name, price, category, compatibility, image_path FROM products $filterSql");
+$stmt = $conn->prepare("SELECT product_id, name, price, category, image_path FROM products $filterSql");
 
 if ($categoryFilter) {
     $stmt->bind_param("s", $categoryFilter);
@@ -76,7 +76,6 @@ $result = $stmt->get_result();
                 <a href="product.php?id=<?= $row['product_id'] ?>" class="text-decoration-none text-dark">
                     <img src="<?= htmlspecialchars($row['image_path']) ?>" class="img-fluid mb-2" alt="<?= htmlspecialchars($row['name']) ?>">
                     <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
-                    <p class="card-text">Compat: <?= htmlspecialchars($row['compatibility']) ?></p>
                     <p class="fw-bold">$<?= number_format($row['price'], 2) ?></p>
                 </a>
                 <div class="mt-auto">
@@ -98,3 +97,4 @@ $result = $stmt->get_result();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
