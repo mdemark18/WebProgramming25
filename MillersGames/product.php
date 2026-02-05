@@ -13,15 +13,8 @@ if (!$product) {
     die("Product not found.");
 }
 
-$related_stmt = $conn->prepare("
-    SELECT product_id, name, price, image_path 
-    FROM products 
-    WHERE compatibility = ? AND product_id != ? 
-    LIMIT 3
-");
-$related_stmt->bind_param("si", $product['compatibility'], $product_id);
-$related_stmt->execute();
-$related_products = $related_stmt->get_result();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,3 +97,4 @@ $related_products = $related_stmt->get_result();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
