@@ -1,6 +1,6 @@
 # Web Programming Project 2025  
 **Author:** Miller DeMark  
-**Project Name:** Miller's Games  
+**Project Name:** [Miller's Games](http://millersgames.free.nf/)  
 
 ## Overview
 Miller’s Games is a full-stack web application developed as part of a Web Programming course in Spring 2025. The application functions as an online games marketplace, allowing users to browse products, manage accounts, and simulate the process of placing orders.
